@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.3
+FROM frolvlad/alpine-glibc:alpine-3.4
 
 MAINTAINER rajat.vig@gmail.com
 
@@ -10,11 +10,10 @@ WORKDIR /tmp
 
 RUN \
   echo ipv6 >> /etc/modules && \
-  echo 'http://dl-2.alpinelinux.org/alpine/v3.3/main/' > /etc/apk/repositories && \
-  apk add --no-cache --virtual=build-dependencies ca-certificates wget && \
+  apk add --no-cache ca-certificates wget && \
   sed -i -e 's#:/bin/[^:].*$#:/sbin/nologin#' /etc/passwd && \
-  checksum="e23545ec1c59af0cdd0225cc0c07e746" && \
-  url="http://cdn.azul.com/zulu-pre/bin/zulu9.0.0.3-ea-jdk9.0.0-linux_x64.tar.gz" && \
+  checksum="516d999293be394116fdcecc64feaf49" && \
+  url="http://cdn.azul.com/zulu-pre/bin/zulu9.0.0.7-ea-jdk9.0.0-linux_x64.tar.gz" && \
   referer="http://zulu.org/download/" && \
   wget --referer "${referer}" "${url}" && \
   md5=$(md5sum *.tar.gz | cut -f1 -d' ') && \
